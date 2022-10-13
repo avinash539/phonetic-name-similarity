@@ -58,7 +58,7 @@ with area_col:
     if area_name := area_col.text_input("Area", type="default", placeholder="Enter Incorrect Area Name",
                                         label_visibility="visible"):
         if data.shape[0]:
-            if score_list := compare_similarity(area_name, data["Village/Locality name"].tolist()):
+            if score_list := compare_similarity(data["Village/Locality name"].tolist(), [area_name]):
                 st.sidebar.title('Scores of the phonetic similarity')
                 score_dict = {row["Village/Locality name"]: round(score_list[i], 3) for i, row in data.iterrows()}
                 score_dict = dict(sorted(score_dict.items(), key=operator.itemgetter(1), reverse=True))

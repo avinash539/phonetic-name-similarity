@@ -35,15 +35,20 @@ def cosdis(v1, v2):
 # list_B = ['abadulpore']
 
 
-def check_similarity(input_word, area_list):
-    IPA_input_word = ipa.convert(input_word)
-    IPA_area_list = [ipa.convert(each) for each in area_list]
-    score_list = []
-    for area in IPA_area_list:
-        res = cosdis(word2vec(input_word), word2vec(area))
-        score_list.append(res)
-    return score_list
+def check_similarity(area_list, input_word):
+    IPA_list_a = []
+    IPA_list_b = []
+    for each in area_list:
+        IPA_list_a.append(ipa.convert(each))
+    for each in input_word:
+        IPA_list_b.append(ipa.convert(each))
+
+    res = []
+    for word in IPA_list_a:
+        for key in IPA_list_b:
+            res.append(cosdis(word2vec(word), word2vec(key)))
+    return res
 
 
-def compare_similarity(input_word, area_list):
-    return check_similarity(input_word, area_list)
+def compare_similarity(area_list, input_word):
+    return check_similarity(area_list, input_word)
