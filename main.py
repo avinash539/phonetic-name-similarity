@@ -55,7 +55,7 @@ if 'pincode' in st.session_state and st.session_state.pincode:
     st.dataframe(data, height=200)
 
 with area_col:
-    if area_name := area_col.text_input("Area", type="default", placeholder="Enter Area Name",
+    if area_name := area_col.text_input("Area", type="default", placeholder="Enter Incorrect Area Name",
                                         label_visibility="visible"):
         if data.shape[0]:
             if score_list := compare_similarity(area_name, data["Village/Locality name"].tolist()):
@@ -65,7 +65,7 @@ with area_col:
                 st.sidebar.write(score_dict)
 
 if score_list:
-    st.write(f'#### Most phonetically similar records for {area_name}:')
+    st.write(f'##### Most phonetically similar records for "{area_name}" are:')
     index = score_list.index(max(score_list))
     match_area_name = data[data.index == index]["Village/Locality name"].reset_index(drop=True).loc[0]
     match = data[data["Village/Locality name"] == match_area_name]
