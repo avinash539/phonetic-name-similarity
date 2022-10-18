@@ -19,6 +19,7 @@ MarkupSafe==2.1.1
 numpy==1.23.4
 packaging==21.3
 pandas==1.5.0
+phonetics==1.0.5
 Pillow==9.2.0
 protobuf==3.20.3
 pyarrow==9.0.0
