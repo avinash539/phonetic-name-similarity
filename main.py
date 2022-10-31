@@ -16,7 +16,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("Phonetically name matching")
+st.title("Phonetic name matching")
 
 data = pd.DataFrame()
 score_list = []
@@ -69,10 +69,10 @@ if score_list:
     st.write(f'##### Most phonetically similar records for "{area_name}" are:')
     index = score_list.index(max(score_list))
     match_area_name = data[data.index == index]["Village/Locality name"].reset_index(drop=True).loc[0]
-    de_metaphone_match_area_name = phonetics.dmetaphone(match_area_name)
-    de_metaphone_area_name = phonetics.dmetaphone(area_name)
-    if de_metaphone_match_area_name == de_metaphone_area_name:
-        match = data[data["Village/Locality name"] == match_area_name]
-        st.write(match)
-    else:
-        st.info('No match found.', icon="ℹ️")
+    # de_metaphone_match_area_name = phonetics.dmetaphone(match_area_name)
+    # de_metaphone_area_name = phonetics.dmetaphone(area_name)
+    # if de_metaphone_match_area_name == de_metaphone_area_name:
+    match = data[data["Village/Locality name"] == match_area_name]
+    st.write(match)
+    # else:
+    #     st.info('No match found.', icon="ℹ️")
